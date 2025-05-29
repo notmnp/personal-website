@@ -5,7 +5,7 @@ import './index.css';
 import Home from './pages/Home';
 import { ThemeProvider } from './components/theme-provider';
 import { SpeedInsights } from '@vercel/speed-insights/react';
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from '@vercel/analytics/react';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -14,9 +14,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
-        <SpeedInsights />
-        <Analytics />
       </BrowserRouter>
+      <SpeedInsights />
+      <Analytics />
     </ThemeProvider>
   </React.StrictMode>
 );
