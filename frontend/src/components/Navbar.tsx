@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { useTheme } from '@/components/theme-provider'
 import { useEffect, useState } from 'react'
 import { ModeToggle } from '@/components/ui/mode-toggle'
+import logoLight from '@/assets/logo_black.svg'
+import logoDark from '@/assets/logo_white.svg'
 
 export function Navbar() {
   const { theme } = useTheme()
@@ -14,7 +16,7 @@ export function Navbar() {
 
   if (!mounted) return null // Avoid hydration mismatch for theme-based logo
 
-  const logoSrc = theme === 'dark' ? '/src/assets/logo_white.svg' : '/src/assets/logo_black.svg'
+  const logoSrc = theme === 'dark' ? logoDark : logoLight
 
   return (
     <nav className="fixed top-0 w-full z-50 backdrop-blur-lg bg-white/30 dark:bg-zinc-900/30 border-b border-zinc-200 dark:border-zinc-800 transition-all">
