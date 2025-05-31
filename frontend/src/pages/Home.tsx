@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/Navbar'
 import { Button } from '@/components/ui/button'
+import { ChatDock } from '@/components/ChatDock'
 import { Linkedin, FileText, Github } from 'lucide-react'
 
 export default function Home() {
@@ -40,6 +41,9 @@ export default function Home() {
           </div>
         </div>
       </main>
+
+      {/* Chat Dock */}
+      <ChatDock />
     </>
   )
 }
