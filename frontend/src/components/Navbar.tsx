@@ -59,19 +59,9 @@ export function Navbar() {
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     setMounted(true)
-  }, [])
-
-  useEffect(() => {
-    function handleScroll() {
-      setIsScrolled(window.scrollY > 10)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   if (!mounted) return null
@@ -80,11 +70,7 @@ export function Navbar() {
 
   return (
     <>
-      <nav className={`fixed top-0 w-full z-[10000] transition-all duration-300 ${
-        isScrolled 
-          ? 'backdrop-blur-xl bg-white/80 dark:bg-zinc-900/80 border-b border-zinc-200/60 dark:border-zinc-800/60 shadow-lg' 
-          : 'backdrop-blur-lg bg-white/30 dark:bg-zinc-900/30 border-b border-zinc-200/30 dark:border-zinc-800/30'
-      }`}>
+      <nav className="fixed top-0 w-full z-[10000] transition-[transform] duration-300 animate-in slide-in-from-top-full duration-1500 ease-out backdrop-blur-lg bg-white/15 dark:bg-zinc-900/60 border-b border-zinc-200/60 dark:border-zinc-800/60 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
@@ -137,10 +123,10 @@ export function Navbar() {
           />
           
           {/* Mobile menu panel */}
-          <div className="fixed top-0 left-0 right-0 z-[9999] bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl border-b border-zinc-200 dark:border-zinc-800 md:hidden">
+          <div className="fixed top-16 left-0 right-0 z-[9999] backdrop-blur-lg bg-white/15 dark:bg-zinc-900/60 border-b border-zinc-200/60 dark:border-zinc-800/60 shadow-lg md:hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* Navigation links */}
-              <nav className="py-6 pt-20">
+              <nav className="py-6 pt-4">
                 <div className="space-y-6">
                   {navItems.map((item) => (
                     <div key={item.href} className="block">

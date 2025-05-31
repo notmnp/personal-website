@@ -1,6 +1,19 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Custom Font - The Bouquet List */
+@font-face {
+  font-family: 'TheBouquetList';
+  src: url('./assets/fonts/TheBouquetList.woff2') format('woff2'),
+       url('./assets/fonts/TheBouquetList.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -116,5 +129,24 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Carousel animations */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
