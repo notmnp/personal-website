@@ -1,5 +1,8 @@
 import { Calendar, MapPin, Briefcase, TrendingUp, Building2, Code2 } from 'lucide-react'
 import { useState } from 'react'
+import logo8090 from '@/assets/logo_8090.svg'
+import logoRtx from '@/assets/logo_rtx.svg'
+import logoTd from '@/assets/logo_td.svg'
 
 export function Experiences() {
   const [selectedCompany, setSelectedCompany] = useState(0)
@@ -8,7 +11,7 @@ export function Experiences() {
     {
       id: "8090",
       company: "8090 Solutions",
-      logo: "/src/assets/logo_8090.svg",
+      logo: logo8090,
       position: "AI Software Engineering Intern",
       duration: "May 2025 - Aug 2025",
       location: "Menlo Park, California",
@@ -22,7 +25,7 @@ export function Experiences() {
     {
       id: "rtx", 
       company: "Pratt & Whitney",
-      logo: "/src/assets/logo_rtx.svg",
+      logo: logoRtx,
       position: "Software Engineering Intern",
       duration: "Sep 2024 - Dec 2024",
       location: "Toronto, Ontario",
@@ -36,7 +39,7 @@ export function Experiences() {
     {
       id: "td",
       company: "TD Bank", 
-      logo: "/src/assets/logo_td.svg",
+      logo: logoTd,
       position: "Software Engineering Intern",
       duration: "Jan 2024 - Apr 2024",
       location: "Toronto, Ontario",
