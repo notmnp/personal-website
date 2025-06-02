@@ -79,8 +79,8 @@ export function Projects() {
         
         {/* Header */}
         <div className="flex items-center gap-3 mb-12">
-          <FolderOpen className="w-6 h-6 text-zinc-600 dark:text-zinc-400" />
-          <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">Projects & Teams</h3>
+          <FolderOpen className="w-6 h-6 text-muted-foreground" />
+          <h3 className="text-2xl font-semibold text-foreground">Projects & Teams</h3>
         </div>
 
         {/* Projects Grid - consistent spacing with other sections */}
@@ -88,17 +88,17 @@ export function Projects() {
           {projects.map((project) => (
             <div 
               key={project.id}
-              className="bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-700/50 rounded-2xl p-6 lg:p-8 transition-all duration-200"
+              className="bg-background/95 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl p-6 lg:p-8 transition-all duration-200"
             >
               
               {/* Project Header */}
               <div className="flex items-start gap-4 mb-6">
-                <div className="w-16 h-16 bg-zinc-100 dark:bg-zinc-800 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <project.icon className="w-8 h-8 text-zinc-600 dark:text-zinc-400" />
+                <div className="w-16 h-16 bg-muted/50 dark:bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <project.icon className="w-8 h-8 text-muted-foreground" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h4 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">{project.title}</h4>
-                  <div className="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-500">
+                  <h4 className="text-xl font-bold text-foreground mb-2">{project.title}</h4>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Calendar className="w-4 h-4" />
                     <span>{project.duration}</span>
                   </div>
@@ -106,21 +106,21 @@ export function Projects() {
               </div>
 
               {/* Description */}
-              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
+              <p className="text-muted-foreground leading-relaxed mb-6">
                 {project.description}
               </p>
 
               {/* Stats Grid */}
-              <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="grid grid-cols-2 gap-4 mb-8">
                 {project.stats.map((stat, index) => (
                   <div 
                     key={index}
-                    className="bg-zinc-50/60 dark:bg-zinc-800/40 rounded-lg border border-zinc-200/30 dark:border-zinc-700/30 p-4 text-center"
+                    className="bg-muted/50 dark:bg-white/5 rounded-xl border border-border/30 dark:border-white/5 p-4 text-center"
                   >
-                    <div className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-1">
+                    <div className="text-lg font-bold text-foreground mb-1">
                       {stat.value}
                     </div>
-                    <div className="text-xs text-zinc-600 dark:text-zinc-400">{stat.label}</div>
+                    <div className="text-xs text-muted-foreground">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -133,7 +133,7 @@ export function Projects() {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 shadow-lg transition-all duration-200 px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                    className="inline-flex items-center gap-2 rounded-xl bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm border border-zinc-200 dark:border-zinc-700 hover:bg-white dark:hover:bg-zinc-800 shadow-lg transition-all duration-200 px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300"
                   >
                     {link.type === 'github' ? (
                       <Github className="w-4 h-4" />

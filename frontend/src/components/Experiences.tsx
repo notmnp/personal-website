@@ -75,13 +75,13 @@ export function Experiences() {
         
         {/* Header */}
         <div className="flex items-center gap-3 mb-12">
-          <Briefcase className="w-6 h-6 text-zinc-600 dark:text-zinc-400" />
-          <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">Work Experience</h3>
+          <Briefcase className="w-6 h-6 text-muted-foreground" />
+          <h3 className="text-2xl font-semibold text-foreground">Work Experience</h3>
         </div>
 
         {/* Mobile Company Selection */}
         <div className="mb-8 lg:hidden">
-          <div className="bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-700/50 rounded-2xl p-6">
+          <div className="bg-background/95 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl p-6">
             <div className="flex items-center justify-center gap-4">
               {experiences.map((exp, index) => (
                 <button
@@ -90,7 +90,7 @@ export function Experiences() {
                   className={`w-18 h-18 rounded-xl flex items-center justify-center p-3 transition-all duration-200 border-2 ${
                     selectedCompany === index 
                       ? getSelectedStyles(index, exp.accentColor)
-                      : 'border-zinc-200/50 dark:border-zinc-700/50 bg-zinc-50/50 dark:bg-zinc-800/50 hover:bg-zinc-100/70 dark:hover:bg-zinc-700/70 hover:border-zinc-300 dark:hover:border-zinc-600'
+                      : 'border-border/50 dark:border-white/10 bg-muted/50 dark:bg-white/5 hover:bg-muted/70 dark:hover:bg-white/10 hover:border-border dark:hover:border-white/20'
                   }`}
                 >
                   <img 
@@ -109,7 +109,7 @@ export function Experiences() {
           
           {/* Vertical Sidebar - Desktop only */}
           <div className="hidden lg:block">
-            <div className="bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-700/50 rounded-2xl p-6 h-full">
+            <div className="bg-background/95 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl p-6 h-full">
               <div className="flex flex-col space-y-8">
                 {experiences.map((exp, index) => (
                   <button
@@ -118,7 +118,7 @@ export function Experiences() {
                     className={`w-18 h-18 rounded-xl flex items-center justify-center p-3 transition-all duration-200 border-2 ${
                       selectedCompany === index 
                         ? getSelectedStyles(index, exp.accentColor)
-                        : 'border-zinc-200/50 dark:border-zinc-700/50 bg-zinc-50/50 dark:bg-zinc-800/50 hover:bg-zinc-100/70 dark:hover:bg-zinc-700/70 hover:border-zinc-300 dark:hover:border-zinc-600'
+                        : 'border-border/50 dark:border-white/10 bg-muted/50 dark:bg-white/5 hover:bg-muted/70 dark:hover:bg-white/10 hover:border-border dark:hover:border-white/20'
                     }`}
                   >
                     <img 
@@ -136,12 +136,12 @@ export function Experiences() {
           <div className="flex-1">
             <div 
               key={selectedCompany} 
-              className="bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-700/50 rounded-2xl p-6 lg:p-8"
+              className="bg-background/95 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl p-6 lg:p-8"
             >
               
               {/* Company Header */}
               <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
-                <div className="hidden sm:flex w-16 h-16 bg-zinc-100 dark:bg-zinc-800 rounded-xl items-center justify-center p-3 flex-shrink-0">
+                <div className="hidden sm:flex w-16 h-16 bg-muted/50 dark:bg-white/5 rounded-xl items-center justify-center p-3 flex-shrink-0">
                   <img 
                     src={currentExperience.logo} 
                     alt={`${currentExperience.company} logo`}
@@ -149,8 +149,8 @@ export function Experiences() {
                   />
                 </div>
                 <div className="min-w-0">
-                  <h4 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-1">{currentExperience.company}</h4>
-                  <p className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                  <h4 className="text-xl font-bold text-foreground mb-1">{currentExperience.company}</h4>
+                  <p className="text-lg font-semibold text-foreground">
                     {currentExperience.position}
                   </p>
                 </div>
@@ -158,58 +158,58 @@ export function Experiences() {
 
               {/* Info Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                <div className="bg-zinc-50/60 dark:bg-zinc-800/40 rounded-lg border border-zinc-200/30 dark:border-zinc-700/30 p-4 text-center">
+                <div className="bg-muted/50 dark:bg-white/5 rounded-xl border border-border/30 dark:border-white/5 p-4 text-center">
                   <div className="flex items-center justify-center gap-2 mb-1">
-                    <Building2 className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
-                    <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100">{currentExperience.companyType}</span>
+                    <Building2 className="w-4 h-4 text-muted-foreground" />
+                    <span className="text-sm font-bold text-foreground">{currentExperience.companyType}</span>
                   </div>
-                  <div className="text-xs text-zinc-600 dark:text-zinc-400">Industry</div>
+                  <div className="text-xs text-muted-foreground">Industry</div>
                 </div>
-                <div className="bg-zinc-50/60 dark:bg-zinc-800/40 rounded-lg border border-zinc-200/30 dark:border-zinc-700/30 p-4 text-center">
+                <div className="bg-muted/50 dark:bg-white/5 rounded-xl border border-border/30 dark:border-white/5 p-4 text-center">
                   <div className="flex items-center justify-center gap-2 mb-1">
-                    <TrendingUp className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
-                    <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100">{currentExperience.focus}</span>
+                    <TrendingUp className="w-4 h-4 text-muted-foreground" />
+                    <span className="text-sm font-bold text-foreground">{currentExperience.focus}</span>
                   </div>
-                  <div className="text-xs text-zinc-600 dark:text-zinc-400">Focus Area</div>
+                  <div className="text-xs text-muted-foreground">Focus Area</div>
                 </div>
               </div>
 
               {/* Duration and Location */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                <div className="bg-zinc-50/60 dark:bg-zinc-800/40 rounded-lg border border-zinc-200/30 dark:border-zinc-700/30 p-4 text-center">
+                <div className="bg-muted/50 dark:bg-white/5 rounded-xl border border-border/30 dark:border-white/5 p-4 text-center">
                   <div className="flex items-center justify-center gap-2 mb-1">
-                    <Calendar className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
-                    <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">{currentExperience.duration}</span>
+                    <Calendar className="w-4 h-4 text-muted-foreground" />
+                    <span className="text-sm font-medium text-foreground">{currentExperience.duration}</span>
                   </div>
-                  <div className="text-xs text-zinc-600 dark:text-zinc-400">Duration</div>
+                  <div className="text-xs text-muted-foreground">Duration</div>
                 </div>
-                <div className="bg-zinc-50/60 dark:bg-zinc-800/40 rounded-lg border border-zinc-200/30 dark:border-zinc-700/30 p-4 text-center">
+                <div className="bg-muted/50 dark:bg-white/5 rounded-xl border border-border/30 dark:border-white/5 p-4 text-center">
                   <div className="flex items-center justify-center gap-2 mb-1">
-                    <MapPin className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
-                    <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">{currentExperience.location}</span>
+                    <MapPin className="w-4 h-4 text-muted-foreground" />
+                    <span className="text-sm font-medium text-foreground">{currentExperience.location}</span>
                   </div>
-                  <div className="text-xs text-zinc-600 dark:text-zinc-400">Location</div>
+                  <div className="text-xs text-muted-foreground">Location</div>
                 </div>
               </div>
 
               {/* Description */}
-              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
+              <p className="text-muted-foreground leading-relaxed mb-6">
                 {currentExperience.description}
               </p>
 
               {/* Technologies */}
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  <Code2 className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
-                  <span className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Technologies</span>
+                  <Code2 className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-sm font-semibold text-foreground/80">Technologies</span>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {currentExperience.technologies.map((tech, index) => (
                     <div
                       key={index}
-                      className="bg-zinc-100/60 dark:bg-zinc-800/60 px-3 py-2 rounded-lg border border-zinc-200/40 dark:border-zinc-700/40"
+                      className="bg-muted/30 dark:bg-white/5 px-3 py-2 rounded-xl border border-border/20 dark:border-white/5"
                     >
-                      <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">{tech}</span>
+                      <span className="text-xs font-medium text-foreground/80">{tech}</span>
                     </div>
                   ))}
                 </div>
