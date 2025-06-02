@@ -1,0 +1,202 @@
+import { Linkedin, FileText, Mail, Github, GraduationCap, Gamepad2, Train, Sparkles } from 'lucide-react'
+import { useState, useEffect } from 'react'
+
+export function Footer() {
+  const currentYear = new Date().getFullYear()
+  const [lastUpdated, setLastUpdated] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchLastCommitDate = async () => {
+      try {
+        const response = await fetch('https://api.github.com/repos/notmnp/personal-website/commits/main')
+        const data = await response.json()
+        
+        if (data && data.commit && data.commit.committer) {
+          const date = new Date(data.commit.committer.date)
+          const formattedDate = date.toLocaleDateString('en-US', {
+            month: '2-digit',
+            day: '2-digit'
+          })
+
+          const formattedTime = date.toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+          })
+
+          setLastUpdated(`${formattedDate} at ${formattedTime}`)
+        }
+      } catch {
+        setLastUpdated("Way Back When")
+      }
+    }
+
+    fetchLastCommitDate()
+  }, [])
+
+  return (
+    <footer className="relative overflow-hidden py-20">
+      {/* Background system - matching other components */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-1/4 right-1/3 w-[400px] h-[400px] bg-gradient-to-bl from-zinc-100/30 to-transparent dark:from-zinc-800/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] bg-gradient-to-tr from-zinc-50/40 to-transparent dark:from-zinc-900/25 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[200px] bg-gradient-to-r from-transparent via-zinc-50/20 to-transparent dark:via-zinc-900/15 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative z-10 px-6 max-w-6xl mx-auto">
+        
+        {/* Footer Links */}
+        <div className="bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-700/50 rounded-2xl p-8 lg:p-12">
+          
+          {/* Links Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-8">
+            
+            {/* Navigation */}
+            <div>
+              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-4">Navigation</h3>
+              <ul className="space-y-3">
+                <li>
+                  <a href="#summary" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                    Summary
+                  </a>
+                </li>
+                <li>
+                  <a href="#experience" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                    Experience
+                  </a>
+                </li>
+                <li>
+                  <a href="#projects" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                    Projects
+                  </a>
+                </li>
+                <li>
+                  <a href="#contact" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Social & Documents */}
+            <div>
+              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-4">Connect</h3>
+              <ul className="space-y-3">
+                <li>
+                  <a 
+                    href="https://www.linkedin.com/in/pattni" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                    LinkedIn
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://drive.google.com/file/d/1PbCPMxl7v5ztaInkgy_vCxyGc2hIEsrI/view?usp=drive_link" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                  >
+                    <FileText className="w-4 h-4" />
+                    Resume
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="mailto:mpattni@uwaterloo.ca"
+                    className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                  >
+                    <Mail className="w-4 h-4" />
+                    Email
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://github.com/notmnp" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                  >
+                    <Github className="w-4 h-4" />
+                    GitHub
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Projects */}
+            <div>
+              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-4">Projects</h3>
+              <ul className="space-y-3">
+                <li>
+                  <a 
+                    href="https://www.courseclutch.com/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                  >
+                    <GraduationCap className="w-4 h-4" />
+                    Course Clutch
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://watai.ca/#/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                  >
+                    <Train className="w-4 h-4" />
+                    WAT.ai
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://notmnp.github.io/#play" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                  >
+                    <Gamepad2 className="w-4 h-4" />
+                    Minimax Connect 4
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://github.com/notmnp/CLAI" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                  >
+                    <Sparkles className="w-4 h-4" />
+                    CLAI
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Footer */}
+          <div className="border-t border-zinc-200/50 dark:border-zinc-700/50 pt-8">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-zinc-500 dark:text-zinc-500">
+              <div className="flex items-center gap-2">
+                <span>Made with ☕️ and 🏓 breaks.</span>
+              </div>
+              <div className="flex items-center gap-2 text-center md:text-right">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span>Last Updated: {lastUpdated ? lastUpdated : "Fetching..."}</span>
+              </div>
+            </div>
+            <div className="text-center md:text-right mt-2 text-sm text-zinc-500 dark:text-zinc-500">
+              © {currentYear} Milan Pattni
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+  )
+} 
