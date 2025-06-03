@@ -1,11 +1,10 @@
 // components/Navbar.tsx
-import { Link, useLocation } from 'react-router-dom'
 import { useTheme } from '@/components/theme-provider'
 import { useEffect, useState } from 'react'
 import { ModeToggle } from '@/components/ui/mode-toggle'
 import Hamburger from 'hamburger-react'
 import logoLight from '@/assets/logo_mp.svg'
-import logoDark from '@/assets/logo_mp_dark.svg'
+import logoDark from '@/assets/logo_mp_dark.svg'  
 
 interface NavItem {
   href: string
@@ -14,44 +13,93 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { href: '/about', label: 'About' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/contact', label: 'Contact' },
+  { href: '#summary', label: 'Summary' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#projects', label: 'Projects' },
 ]
 
 function NavLink({ href, label, external = false, onClick }: NavItem & { onClick?: () => void }) {
-  const location = useLocation()
-  const isActive = location.pathname === href || 
-                   (href === '/' && location.pathname === '/')
+  const [isActive, setIsActive] = useState(false)
 
-  if (external) {
-    return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={onClick}
-        className="relative text-sm font-medium text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white transition-all duration-200 group"
-      >
-        {label}
-        <span className={`absolute -bottom-1 left-0 h-0.5 bg-zinc-900 dark:bg-white transition-all duration-200 ${
-          isActive ? 'w-full' : 'w-0 group-hover:w-full'
-        }`} />
-      </a>
-    )
+  useEffect(() => {
+    const checkActive = () => {
+      let targetElement: HTMLElement | null = null
+      const targetId = href.replace('#', '')
+      
+      switch (targetId) {
+        case 'about':
+          targetElement = document.querySelector('section')
+          break
+        case 'experience':
+          targetElement = document.querySelector('section:nth-of-type(2)')
+          break
+        case 'projects':
+          targetElement = document.querySelector('section:nth-of-type(3)')
+          break
+        case 'contact':
+          targetElement = document.querySelector('footer')
+          break
+      }
+
+      if (targetElement) {
+        const rect = targetElement.getBoundingClientRect()
+        setIsActive(rect.top <= 100 && rect.bottom >= 100)
+      }
+    }
+
+    window.addEventListener('scroll', checkActive)
+    checkActive()
+    return () => window.removeEventListener('scroll', checkActive)
+  }, [href])
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    onClick?.()
+    
+    if (external) {
+      window.open(href, '_blank', 'noopener,noreferrer')
+      return
+    }
+
+    // Scroll to section
+    const targetId = href.replace('#', '')
+    let targetElement: HTMLElement | null = null
+
+    switch (targetId) {
+      case 'summary':
+        targetElement = document.querySelector('section')
+        break
+      case 'experience':
+        targetElement = document.querySelector('section:nth-of-type(2)')
+        break
+      case 'projects':
+        targetElement = document.querySelector('section:nth-of-type(3)')
+        break
+      case 'contact':
+        targetElement = document.querySelector('footer')
+        break
+    }
+
+    if (targetElement) {
+      const offsetTop = targetElement.offsetTop - 120
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      })
+    }
   }
 
   return (
-    <Link
-      to={href}
-      onClick={onClick}
-      className="relative text-sm font-medium text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white transition-all duration-200 group"
+    <a
+      href={href}
+      onClick={handleClick}
+      className="relative text-sm font-medium text-foreground/80 hover:text-foreground transition-all duration-200 group"
     >
       {label}
-      <span className={`absolute -bottom-1 left-0 h-0.5 bg-zinc-900 dark:bg-white transition-all duration-200 ${
+      <span className={`absolute -bottom-1 left-0 h-0.5 bg-foreground transition-all duration-200 ${
         isActive ? 'w-full' : 'w-0 group-hover:w-full'
       }`} />
-    </Link>
+    </a>
   )
 }
 
@@ -59,9 +107,17 @@ export function Navbar() {
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+    
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+    
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   if (!mounted) return null
@@ -70,12 +126,18 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 w-full z-[10000] transition-[transform] duration-300 animate-in slide-in-from-top-full duration-1500 ease-out backdrop-blur-lg bg-white/15 dark:bg-zinc-900/60 border-b border-zinc-200/60 dark:border-zinc-800/60 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-[10000] transition-[transform] duration-300 animate-in slide-in-from-top-full duration-1500 ease-out ${
+        'bg-background/60 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 shadow-sm' 
+      } rounded-[2rem] w-[95vw] max-w-5xl`}>
+        <div className="px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link 
-              to="/" 
+            <a 
+              href="#"
+              onClick={(e) => {
+                e.preventDefault()
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
               className="flex items-center space-x-2 transition-transform duration-200 hover:scale-105 relative z-[10001]"
             >
               <img 
@@ -83,7 +145,7 @@ export function Navbar() {
                 alt="Logo" 
                 className="h-8 w-auto transition-opacity duration-200" 
               />
-            </Link>
+            </a>
 
             {/* Desktop navigation */}
             <div className="hidden md:flex items-center gap-8">
@@ -93,7 +155,7 @@ export function Navbar() {
                 ))}
               </nav>
               
-              <div className="h-6 w-px bg-zinc-300 dark:bg-zinc-700" />
+              <div className="h-6 w-px bg-border/50 dark:bg-white/10" />
               
               <ModeToggle />
             </div>
@@ -101,12 +163,13 @@ export function Navbar() {
             {/* Mobile menu button */}
             <div className="md:hidden relative z-[10001]">
               <Hamburger
-                toggled={isMobileMenuOpen}
-                toggle={setIsMobileMenuOpen}
-                size={24}
+                size={20}
+                color="white"
+                rounded
                 duration={0.3}
                 distance="md"
-                rounded
+                toggled={isMobileMenuOpen}
+                toggle={setIsMobileMenuOpen}
               />
             </div>
           </div>
@@ -123,11 +186,11 @@ export function Navbar() {
           />
           
           {/* Mobile menu panel */}
-          <div className="fixed top-16 left-0 right-0 z-[9999] backdrop-blur-lg bg-white/15 dark:bg-zinc-900/60 border-b border-zinc-200/60 dark:border-zinc-800/60 shadow-lg md:hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="fixed top-24 left-1/2 transform -translate-x-1/2 z-[9999] bg-background/70 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 shadow-sm rounded-[2rem] w-[90vw] max-w-md md:hidden">
+            <div className="p-6">
               {/* Navigation links */}
-              <nav className="py-6 pt-4">
-                <div className="space-y-6">
+              <nav className="mb-6">
+                <div className="space-y-4">
                   {navItems.map((item) => (
                     <div key={item.href} className="block">
                       <NavLink {...item} onClick={() => setIsMobileMenuOpen(false)} />
@@ -137,9 +200,9 @@ export function Navbar() {
               </nav>
               
               {/* Footer with theme toggle */}
-              <div className="py-4 border-t border-zinc-200 dark:border-zinc-800">
+              <div className="pt-4 border-t border-border/50 dark:border-white/10">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-zinc-600 dark:text-zinc-400">Theme</span>
+                  <span className="text-sm text-muted-foreground">Theme</span>
                   <ModeToggle />
                 </div>
               </div>

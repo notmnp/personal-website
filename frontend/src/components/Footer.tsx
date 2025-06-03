@@ -5,6 +5,17 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
   const [lastUpdated, setLastUpdated] = useState<string | null>(null)
 
+  const scrollToSection = (sectionSelector: string) => {
+    const targetElement = document.querySelector(sectionSelector) as HTMLElement
+    if (targetElement) {
+      const offsetTop = targetElement.offsetTop - 120
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      })
+    }
+  }
+
   useEffect(() => {
     const fetchLastCommitDate = async () => {
       try {
@@ -36,17 +47,10 @@ export function Footer() {
 
   return (
     <footer className="relative overflow-hidden py-20">
-      {/* Background system - matching other components */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 right-1/3 w-[400px] h-[400px] bg-gradient-to-bl from-zinc-100/30 to-transparent dark:from-zinc-800/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] bg-gradient-to-tr from-zinc-50/40 to-transparent dark:from-zinc-900/25 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[200px] bg-gradient-to-r from-transparent via-zinc-50/20 to-transparent dark:via-zinc-900/15 rounded-full blur-3xl" />
-      </div>
-
       <div className="relative z-10 px-6 max-w-6xl mx-auto">
         
         {/* Footer Links */}
-        <div className="bg-background/95 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl p-8 lg:p-12">
+        <div className="bg-background/60 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-sm p-8 lg:p-12">
           
           {/* Links Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-8">
@@ -56,23 +60,39 @@ export function Footer() {
               <h3 className="text-lg font-semibold text-foreground mb-4">Navigation</h3>
               <ul className="space-y-3">
                 <li>
-                  <a href="#summary" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <a 
+                    href="#about" 
+                    onClick={(e) => {
+                      e.preventDefault()
+                      scrollToSection('section')
+                    }}
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
                     Summary
                   </a>
                 </li>
                 <li>
-                  <a href="#experience" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <a 
+                    href="#experience" 
+                    onClick={(e) => {
+                      e.preventDefault()
+                      scrollToSection('section:nth-of-type(2)')
+                    }}
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
                     Experience
                   </a>
                 </li>
                 <li>
-                  <a href="#projects" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <a 
+                    href="#projects" 
+                    onClick={(e) => {
+                      e.preventDefault()
+                      scrollToSection('section:nth-of-type(3)')
+                    }}
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
                     Projects
-                  </a>
-                </li>
-                <li>
-                  <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Contact
                   </a>
                 </li>
               </ul>

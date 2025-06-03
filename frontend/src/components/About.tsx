@@ -11,13 +11,7 @@ export function About() {
   const progress = Math.max(0, Math.min(100, Math.round((elapsed / totalDuration) * 100)))
 
   return (
-    <section className="relative overflow-hidden py-32 pb-8">
-      {/* Ultra minimal background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 right-1/3 w-[400px] h-[400px] bg-gradient-to-bl from-zinc-100/30 to-transparent dark:from-zinc-800/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] bg-gradient-to-tr from-zinc-50/40 to-transparent dark:from-zinc-900/25 rounded-full blur-3xl" />
-      </div>
-
+    <section className="relative overflow-hidden pb-8">
       <div className="relative z-10 px-6 max-w-6xl mx-auto">
         
         {/* Summary */}
@@ -30,7 +24,7 @@ export function About() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
           
           {/* Status Dashboard */}
-          <div className="bg-background/95 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl p-6 lg:p-8">
+          <div className="bg-background/70 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-sm p-6 lg:p-8">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-lg font-semibold text-foreground">Status</h3>
               <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
@@ -69,21 +63,23 @@ export function About() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
+              <a href="mailto:mpattni@uwaterloo.ca" className="flex items-center gap-3 cursor-pointer group">
                 <Mail className="w-5 h-5 text-muted-foreground flex-shrink-0" />
                 <div className="min-w-0">
-                  <a href="mailto:mpattni@uwaterloo.ca" className="font-medium text-foreground hover:text-foreground/80 transition-colors break-words">
+                  <p className="font-medium text-foreground group-hover:text-foreground/80 break-words">
                     mpattni@uwaterloo.ca
-                  </a>
-                  <p className="text-sm text-muted-foreground">Get in touch</p>
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Get in touch
+                  </p>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
 
           {/* Education - Reorganized */}
           <div className="lg:col-span-2">
-            <div className="bg-background/95 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl p-6 lg:p-8 h-full">
+            <div className="bg-background/60 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-sm p-6 lg:p-8 h-full">
               
               {/* University Header */}
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-3">

@@ -104,11 +104,11 @@ export const ChatDock: React.FC = () => {
       </style>
       <div className={cn(
         "fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 animate-in slide-in-from-bottom-full duration-1750 ease-out",
-        "bg-background/95 dark:bg-background/20 backdrop-blur-3xl transition-none",
-        "border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl",
+        "bg-background/70 dark:bg-background/20 backdrop-blur-3xl transition-none",
+        "border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-sm",
         "flex flex-col",
         isExpanded && "transition-[width,height] duration-500 ease-out",
-        "w-[95vw] max-w-2xl w-[85vw] max-w-[700px]",
+        "w-[95vw] max-w-5xl md:max-w-2xl",
         isExpanded 
           ? "h-[85vh] max-h-[600px]" 
           : "h-16 lg:h-20"

@@ -68,13 +68,6 @@ export function Projects() {
 
   return (
     <section className="relative overflow-hidden pb-20 pt-0">
-      {/* Background system - matching other components */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 right-1/3 w-[400px] h-[400px] bg-gradient-to-bl from-zinc-100/30 to-transparent dark:from-zinc-800/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] bg-gradient-to-tr from-zinc-50/40 to-transparent dark:from-zinc-900/25 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[200px] bg-gradient-to-r from-transparent via-zinc-50/20 to-transparent dark:via-zinc-900/15 rounded-full blur-3xl" />
-      </div>
-
       <div className="relative z-10 px-6 max-w-6xl mx-auto">
         
         {/* Header */}
@@ -88,7 +81,7 @@ export function Projects() {
           {projects.map((project) => (
             <div 
               key={project.id}
-              className="bg-background/95 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl p-6 lg:p-8 transition-all duration-200"
+              className="bg-background/60 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-sm p-6 lg:p-8"
             >
               
               {/* Project Header */}
@@ -133,7 +126,7 @@ export function Projects() {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-xl bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm border border-zinc-200 dark:border-zinc-700 hover:bg-white dark:hover:bg-zinc-800 shadow-lg transition-all duration-200 px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                    className="inline-flex items-center gap-2 rounded-xl bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm border border-zinc-200 dark:border-zinc-700 hover:bg-white dark:hover:bg-zinc-800 shadow-sm px-4 py-2 text-sm font-medium text-foreground"
                   >
                     {link.type === 'github' ? (
                       <Github className="w-4 h-4" />
