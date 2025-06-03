@@ -4,8 +4,8 @@ import { useTheme } from '@/components/theme-provider'
 import { useEffect, useState } from 'react'
 import { ModeToggle } from '@/components/ui/mode-toggle'
 import Hamburger from 'hamburger-react'
-import logoLight from '@/assets/logo_black.svg'
-import logoDark from '@/assets/logo_white.svg'
+import logoLight from '@/assets/logo_mp.svg'
+import logoDark from '@/assets/logo_mp_dark.svg'
 
 interface NavItem {
   href: string
@@ -66,7 +66,7 @@ export function Navbar() {
 
   if (!mounted) return null
 
-  const logoSrc = theme === 'dark' ? logoDark : logoLight
+  const logoSrc = theme === 'dark' ? logoLight : logoDark
 
   return (
     <>
