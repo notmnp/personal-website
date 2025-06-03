@@ -156,7 +156,7 @@ export function Navbar() {
             <div className="md:hidden relative z-[10001]">
               <Hamburger
                 size={20}
-                color="white"
+                color={theme === 'dark' ? 'white' : '#374151'}
                 rounded
                 duration={0.3}
                 distance="md"
