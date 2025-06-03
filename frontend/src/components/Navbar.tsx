@@ -13,7 +13,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { href: '#summary', label: 'Summary' },
+  { href: '#about', label: 'Summary' },
   { href: '#experience', label: 'Experience' },
   { href: '#projects', label: 'Projects' },
 ]
@@ -66,7 +66,7 @@ function NavLink({ href, label, external = false, onClick }: NavItem & { onClick
     let targetElement: HTMLElement | null = null
 
     switch (targetId) {
-      case 'summary':
+      case 'about':
         targetElement = document.querySelector('section')
         break
       case 'experience':
@@ -93,7 +93,7 @@ function NavLink({ href, label, external = false, onClick }: NavItem & { onClick
     <a
       href={href}
       onClick={handleClick}
-      className="relative text-sm font-medium text-foreground/80 hover:text-foreground transition-all duration-200 group"
+      className="relative text-sm font-medium text-foreground/80 hover:text-foreground transition-all duration-200 transition-none group"
     >
       {label}
       <span className={`absolute -bottom-1 left-0 h-0.5 bg-foreground transition-all duration-200 ${
@@ -107,17 +107,9 @@ export function Navbar() {
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     setMounted(true)
-    
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-    }
-    
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   if (!mounted) return null
