@@ -1,21 +1,26 @@
 import { Calendar, MapPin, Briefcase, TrendingUp, Building2, Code2 } from 'lucide-react'
 import { useState } from 'react'
+import { useTheme } from '@/components/theme-provider'
 import logo8090 from '@/assets/logo_8090.svg'
+import logo8090Dark from '@/assets/logo_8090_dark.svg'
 import logoRtx from '@/assets/logo_rtx.svg'
+import logoRtxDark from '@/assets/logo_rtx_dark.svg'
 import logoTd from '@/assets/logo_td.svg'
+import logoTdDark from '@/assets/logo_td_dark.svg'
 
 export function Experiences() {
+  const { theme } = useTheme()
   const [selectedCompany, setSelectedCompany] = useState(0)
 
   const experiences = [
     {
       id: "8090",
       company: "8090 Solutions",
-      logo: logo8090,
+      logo: theme === 'dark' ? logo8090 : logo8090Dark,
       position: "AI Software Engineering Intern",
       duration: "May 2025 - Aug 2025",
       location: "Menlo Park, California",
-      description: "Incoming Summer 2025. Building AI systems and integrating LLMs to enhance enterprise solutions.",
+      description: "Building AI systems and integrating LLMs to enhance enterprise solutions.",
       isUpcoming: true,
       companyType: "Startup",
       focus: "AI / LLMs",
@@ -25,7 +30,7 @@ export function Experiences() {
     {
       id: "rtx", 
       company: "Pratt & Whitney",
-      logo: logoRtx,
+      logo: theme === 'dark' ? logoRtx : logoRtxDark,
       position: "Software Engineering Intern",
       duration: "Sep 2024 - Dec 2024",
       location: "Toronto, Ontario",
@@ -39,7 +44,7 @@ export function Experiences() {
     {
       id: "td",
       company: "TD Bank", 
-      logo: logoTd,
+      logo: theme === 'dark' ? logoTd : logoTdDark,
       position: "Software Engineering Intern",
       duration: "Jan 2024 - Apr 2024",
       location: "Toronto, Ontario",
@@ -67,13 +72,6 @@ export function Experiences() {
 
   return (
     <section className="relative overflow-hidden pb-20 pt-0">
-      {/* Background system - matching other components */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 right-1/3 w-[400px] h-[400px] bg-gradient-to-bl from-zinc-100/30 to-transparent dark:from-zinc-800/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] bg-gradient-to-tr from-zinc-50/40 to-transparent dark:from-zinc-900/25 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[200px] bg-gradient-to-r from-transparent via-zinc-50/20 to-transparent dark:via-zinc-900/15 rounded-full blur-3xl" />
-      </div>
-
       <div className="relative z-10 px-6 max-w-6xl mx-auto">
         
         {/* Header */}
@@ -84,13 +82,13 @@ export function Experiences() {
 
         {/* Mobile Company Selection */}
         <div className="mb-8 lg:hidden">
-          <div className="bg-background/95 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl p-6">
+          <div className="bg-background/60 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-sm p-6">
             <div className="flex items-center justify-center gap-4">
               {experiences.map((exp, index) => (
                 <button
                   key={exp.id}
                   onClick={() => setSelectedCompany(index)}
-                  className={`w-18 h-18 rounded-xl flex items-center justify-center p-3 transition-all duration-200 border-2 ${
+                  className={`w-18 h-18 rounded-xl flex items-center justify-center p-3 border-2 ${
                     selectedCompany === index 
                       ? getSelectedStyles(index, exp.accentColor)
                       : 'border-border/50 dark:border-white/10 bg-muted/50 dark:bg-white/5 hover:bg-muted/70 dark:hover:bg-white/10 hover:border-border dark:hover:border-white/20'
@@ -112,13 +110,13 @@ export function Experiences() {
           
           {/* Vertical Sidebar - Desktop only */}
           <div className="hidden lg:block">
-            <div className="bg-background/95 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl p-6 h-full">
+            <div className="bg-background/60 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-sm p-6 h-full">
               <div className="flex flex-col space-y-8">
                 {experiences.map((exp, index) => (
                   <button
                     key={exp.id}
                     onClick={() => setSelectedCompany(index)}
-                    className={`w-18 h-18 rounded-xl flex items-center justify-center p-3 transition-all duration-200 border-2 ${
+                    className={`w-18 h-18 rounded-xl flex items-center justify-center p-3 border-2 ${
                       selectedCompany === index 
                         ? getSelectedStyles(index, exp.accentColor)
                         : 'border-border/50 dark:border-white/10 bg-muted/50 dark:bg-white/5 hover:bg-muted/70 dark:hover:bg-white/10 hover:border-border dark:hover:border-white/20'
@@ -139,7 +137,7 @@ export function Experiences() {
           <div className="flex-1">
             <div 
               key={selectedCompany} 
-              className="bg-background/95 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl p-6 lg:p-8"
+              className="bg-background/60 dark:bg-background/20 backdrop-blur-3xl border border-border/50 dark:border-white/10 rounded-[2rem] lg:rounded-[2.5rem] shadow-sm p-6 lg:p-8"
             >
               
               {/* Company Header */}
